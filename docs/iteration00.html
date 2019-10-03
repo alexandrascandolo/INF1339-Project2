@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <style> 
@@ -6,18 +7,26 @@
   font-style: thin, normal;
   }
  </style>
- 
-<script>
-function myFunction(hello) {
-  return hello;
-}
-document.getElementById("demo").innerHTML = myFunction(hello);
-</script>
+</head>
  
 <title>Alexandra INF1339 Project 2</title>
-<head>
 <body>
-<h3>API Project Iteration 0</h3>
-<p id="sentinel" class="test_class"></p>
+<h2>API Project 2: Iteration 0</h2>
+    
+<h3> Javascript Function</h3>
+<p class = "a">This example function greets you when you click the button:</p>
+    
+<button onclick= "hello()">Say hi, please!</button>
+    
+<p id="demo"></p>
+    
+<script>
+function hello() {
+  document.getElementById("demo").innerHTML = "Hello!";
+}
+</script>
+    
+<h3>Styling Function</h3>
+<p class = "a">These paragraphs are in Helvetica Neue in 15px.</p>
 </body>
 </html>
