@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+    body {
+   padding-left: 12px
+    }
+    p.a {
+    font: 15px helvetica neue, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+p.b {
+    font: 15px courier new, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    color: blue;
+  }
+ h1 {
+    font: 40px helvetica neue, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+  }
+    
+  h2 {
+    font: 36px helvetica neue, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+  }
+    
+ h3 {
+    font: 18px helvetica neue, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    }
+button {
+    font: 12px helvetica neue, sans-serif;
+    font-weight: 400;
+    letter-spacing: .5px;
+    font-style: oblique
+    }
+    
+ </style>
+</head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+    //STORE some data in "global" variables known to all functions
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=rainbow&api-key=neSJxo9lj11BL3rGRKSKztW5ZRrn1yeA";
+    
+    //SETUP is a standard way P5 starts a script
+    function setup() {
+    //P5 usually used for drawing
+    noCanvas();
+    
+    //SEND the URL and when the data comes back, run the function "gotData"
+    loadJSON(url,gotData);
+    }
+    
+    //gotDATA for now just announces itself
+    function gotData(data) {
+        alert("FUNCTION GOT DATA WAS ACTIVATED")
+        document.getElementById("test_output").innerHTML=data.response.docs[0].headline.main
+    }
+    </script>
+ 
+<title>Alexandra INF1339 Project 2</title>
+<body>
+<h2>API Project 2: Iteration 1</h2>
+<h3>New York Times API: Articles from all time about rainbows</h3>
+    <!--a<P> (paragraph) element we will use for output -->
+    <!--it's name is "test-output" and it is styled by the class "output"-->
+    <p class = b id="test_output" class="output"></p>
+    
+
+</body>
+</html>
