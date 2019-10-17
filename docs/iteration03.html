@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+    body {
+   padding-left: 12px
+    }
+    p {
+    font: 15px helvetica neue, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    font-style: italic
+  }
+
+ h1 {
+    font: 40px helvetica neue, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+  }
+    
+  h2 {
+    font: 30px helvetica neue, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+  }
+    
+ h3 {
+    font: 18px helvetica neue, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    }
+button {
+    font: 12px helvetica neue, sans-serif;
+    font-weight: 400;
+    letter-spacing: .5px;
+    font-style: oblique
+    }
+    
+ </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    
+<script>
+    //STORE some data in "global" variables known to all functions
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=rainbows&api-key=neSJxo9lj11BL3rGRKSKztW5ZRrn1yeA";
+        var articleCount = 0
+    
+    //SETUP is a standard way P5 starts a script
+    function setup() {
+    //P5 usually used for drawing
+    noCanvas(); 
+    //SEND the URL and when the data comes back, run the function "gotData"
+    loadJSON(url,gotData);
+    }
+    
+    //gotDATA for now just writes
+    function gotData(data) {
+        appendToPage (data)
+
+        //API only delivers 10 articles at a time, check metadata for more pages
+        var hits = data.response.meta.hits
+        
+        for (var i=1; i < 3; i++) {
+        loadJSON(url + '&page' + 1 + appendToPage)  
+        }
+    }
+        
+    function appendToPage (data) {
+        //MOVE the docs array part of JSON object to "articles" to save typing
+        var articles = data.response.docs; 
+        //LOOP over the array, creating a heading and paragraph for each article
+        for (var i = 0; i < articles.length; i++) {
+            articleCount++
+            h = document.createElement('h3')
+            h.innerHTML = '(' + articleCount + ') ' + articles[i].headline.main
+            document.body.appendChild(h);
+            p = document.createElement ('p')
+            p.innerHTML = articles[i].snippet
+            document.body.appendChild(p);
+        }
+    }
+    </script>
+ </head>
+    
+<title>Alexandra INF1339 Project 2</title>
+    <body>
+        <h1>API Project 2: Iteration 3</h1>
+        <h2>New York Times API: Articles from all time about rainbows</h2>
+    </body>
+</html>
