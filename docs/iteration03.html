@@ -73,7 +73,7 @@ button {
         for (var i = 0; i < articles.length; i++) {
             articleCount++
             h = document.createElement('h3')
-            h.innerHTML = '(' + articleCount + ') ' + articles[i].headline.main
+            h.innerHTML = articleCount + '. ' + articles[i].headline.main
             document.body.appendChild(h);
             p = document.createElement ('p')
             p.innerHTML = articles[i].snippet
